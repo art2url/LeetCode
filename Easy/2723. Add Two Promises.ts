@@ -29,10 +29,12 @@ async function addTwoPromises(promise1: P, promise2: P): P {
   return Promise.resolve(resultOne + resultTwo);
 }
 
-new Promise((resolve) => setTimeout(() => resolve(2), 20));
-new Promise((resolve) => setTimeout(() => resolve(5), 60));
-// 2 + 5 = 7
+addTwoPromises(
+  new Promise((resolve) => setTimeout(() => resolve(2), 20)),
+  new Promise((resolve) => setTimeout(() => resolve(5), 60))
+).then(console.log); // 7
 
-new Promise((resolve) => setTimeout(() => resolve(10), 50));
-new Promise((resolve) => setTimeout(() => resolve(-12), 30));
-// 10 + -12 = -2
+addTwoPromises(
+  new Promise((resolve) => setTimeout(() => resolve(10), 50)),
+  new Promise((resolve) => setTimeout(() => resolve(-12), 30))
+).then(console.log); // -2
